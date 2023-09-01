@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rimfire-jwt-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rimfire-jwt-auth
+  template:
+    metadata:
+      labels:
+        app: rimfire-jwt-auth
+    spec:
+      containers:
+      - name: rimfire-jwt-auth
+        image: rimfire-jwt-auth:latest
+        ports:
+        - containerPort: 2222
+        resources:
+          limits:
+            cpu: "1"
+            memory: "512Mi"
+          requests:
+            cpu: "0.5"
+            memory: "256Mi"
+        env:
+        - name: DB_HOST
+          value: "172.29.32.1"
+        - name: DB_PORT
+          value: "5432"
