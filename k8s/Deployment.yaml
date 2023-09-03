@@ -12,20 +12,12 @@ spec:
       labels:
         app: rimfire-jwt-auth
     spec:
+      initContainers:
+        - name: check-db-ready
+          image: postgres:9.6.5
+          command: ['sh', '-c', 'until pg_isready -h $DB_HOST -p $DB_PORT; do echo waiting for database; sleep 2; done;']
       containers:
-      - name: rimfire-jwt-auth
-        image: rimfire-jwt-auth:latest
-        ports:
-        - containerPort: 2222
-        resources:
-          limits:
-            cpu: "1"
-            memory: "512Mi"
-          requests:
-            cpu: "0.5"
-            memory: "256Mi"
-        env:
-        - name: DB_HOST
-          value: "172.29.32.1"
-        - name: DB_PORT
-          value: "5432"
+        - name: rimfire-jwt-auth
+          image: rimfire-jwt-auth:latest
+          ports:
+          - containerPort: 2222
