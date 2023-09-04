@@ -15,9 +15,9 @@ spec:
       initContainers:
         - name: check-db-ready
           image: postgres:9.6.5
-          command: ['sh', '-c', 'until pg_isready -h 10.104.84.186 -p 5432; do echo waiting for database; sleep 2; done;']
+          command: ['sh', '-c', 'until pg_isready -h rimfire-de-db -p 5432; do echo waiting for database; sleep 2; done;']
       containers:
         - name: rimfire-jwt-auth
           image: rimfire-jwt-auth:latest
           ports:
-          - containerPort: 2222
+            - containerPort: 2222

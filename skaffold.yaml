@@ -5,8 +5,9 @@ metadata:
 build:
   artifacts:
     - image: rimfire-jwt-auth
+      context: .
       jib: {}
 deploy:
   kubectl:
     manifests:
-      - k8s/Deployment.yaml
+      - k8s/deployment.yaml
