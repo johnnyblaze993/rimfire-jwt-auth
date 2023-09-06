@@ -8,14 +8,13 @@ micronaut:
         signatures:
           secret:
             generator:
-              secret: mysecret
+              secret: your-secret-key-here-with-at-least-32-characters
   server:
     port: 2222
 datasources:
   default:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/rimfirededb
+    url: jdbc:postgresql://localhost:5432/rimfirededb
     driver-class-name: org.postgresql.Driver
-    db-type: postgres
     dialect: POSTGRES
     username: rimfirededb
     password: mysecretpassword
