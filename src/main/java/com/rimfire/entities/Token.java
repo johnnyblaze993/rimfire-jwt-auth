@@ -6,7 +6,7 @@ import java.util.UUID;
 import io.micronaut.data.annotation.Id;
 import io.micronaut.data.annotation.MappedEntity;
 
-@MappedEntity("token")
+@MappedEntity("jwt_auth.token")
 public class Token {
 
     @Id

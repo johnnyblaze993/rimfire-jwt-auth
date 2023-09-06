@@ -8,7 +8,7 @@ micronaut:
         signatures:
           secret:
             generator:
-              secret: mysecret
+              secret: your-secret-key-here-with-at-least-32-characters
   server:
     port: 2222
 datasources:

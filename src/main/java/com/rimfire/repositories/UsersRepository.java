@@ -19,5 +19,15 @@ public interface UsersRepository extends CrudRepository<Users, UUID> {
     @Query("SELECT * FROM rimfirede.users")
     List<Users> getAllUsers();
 
+
+
+	//query to find user by first name and username
+    @Query("SELECT * FROM rimfirede.users WHERE username = :username AND first_name = :firstName")
+    Users findByUsernameAndFirstName(String username, String firstName);
+
+    
+    //get useride of user by username
+    @Query("SELECT user_id FROM rimfirede.users WHERE username = :username")
+    UUID getUserIdByUsername(String username);
     
 }
