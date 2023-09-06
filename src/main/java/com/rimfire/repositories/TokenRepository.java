@@ -8,6 +8,7 @@ import io.micronaut.data.repository.CrudRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @JdbcRepository(dialect = Dialect.POSTGRES)
@@ -21,4 +22,14 @@ public interface TokenRepository extends CrudRepository<Token, String> {
 
     @Query("INSERT INTO jwt_auth.token (token, user_id, exp, issued_at, is_valid) VALUES (:token, :userId, :exp, :issuedAt, :isValid)")
     void saveToken(String token, UUID userId, LocalDateTime exp, LocalDateTime issuedAt, boolean isValid);
+
+    //deleteByUserId
+    @Query("DELETE FROM jwt_auth.token WHERE user_id = :userId")
+    void deleteByUserId(UUID userId);
+
+    @Query("DELETE FROM jwt_auth.token WHERE token = :token")
+    void deleteByToken(String token);
+    @Override
+    @Query("SELECT * FROM jwt_auth.token WHERE token = :token")
+    Optional<Token> findById(String token);
 }
